@@ -16,6 +16,7 @@
 /**
  * About: A Jquery (1.4.x) plugin which works in IE7, IE8 and modern browsers
  * Author: Ricardo Dantas <ricardodantas@gmail.com>
+ * Version: 1.0.0
  */
 
 (function ( $ ) {
