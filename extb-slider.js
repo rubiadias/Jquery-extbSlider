@@ -24,24 +24,31 @@
     $.fn.extbSlider = function(settings) {
 
         var $father_element = this;
+
         var config = $.extend({
-            width : 500, // pixes
+            width : 500, // pixels
             children : $father_element.children(),
             max_view : 4
 
         }, settings);
-        var numberOfSlides = $father_element.children(config.children).length;
 
+        var numberOfSlides = $father_element.children(config.children).length;
+        var itens_per_container = parseInt(numberOfSlides/config.max_view);
+
+        $father_element.children(config.children).wrapAll('<div class="extbSliderWrapAll" />');
+        var $extbSliderWrapAll = $father_element.children('.extbSliderWrapAll');
 
         if(config.children !== undefined){
 
-            if ($father_element.children(config.children).length > 0){
+            if ($extbSliderWrapAll.children(config.children).length > 0){
 
-                $father_element.children(config.children).hide();
-                // $father_element.children(config.children).first().show();
+                //$extbSliderWrapAll.children(config.children).hide();
+                // $extbSliderWrapAll.children(config.children).first().show();
 
-                $father_element.children(config.children).each(function(i){
-                        order = i+1;
+                $extbSliderWrapAll.children(config.children).each(function(i){
+
+                        order = i + 1;
+
                         $(this).addClass('extbSliderItem slide_'+order);
 
                         if(order <= config.max_view){
@@ -49,15 +56,25 @@
                         }
                 });
 
-                $father_element.children('.extbSliderItem').wrapAll('<div class="extbSliderWrapAll" />');
-                var $extbSliderWrapAll = $father_element.children('.extbSliderWrapAll');
+                // for(var z=1 ; z <= itens_per_container ; z++ ){
+                //     $extbSliderWrapAll.append('<div class="extbSliderContainer item_'+z+'"/>');
+                // }
+
+                var sel;
+                var count = 1;
+                while ( (sel = $extbSliderWrapAll.children(config.children)).length > 0 ){
+                    sel.slice(0,config.max_view).wrapAll('<div class="extbSliderContainer item_'+ count++ +'" />');
+                }
 
                 $extbSliderWrapAll.css('width', config.width * config.max_view);
+
+                $extbSliderWrapAll.children('.extbSliderContainer').hide();
+                $extbSliderWrapAll.children('.extbSliderContainer').first().show();
 
                 $extbSliderWrapAll.before('<div class="extbSliderBtPrev"><a class="extbSliderLnkPrev" href="javascript:void(0);">Prev</a></div>');
                 $extbSliderWrapAll.after('<div class="extSliderBtNext"><a class="extbSliderLnkNext" href="javascript:void(0);">Next</a></div>');
 
-                var $current_children = $extbSliderWrapAll.children(config.children).filter(':visible');
+                var $current_children = $extbSliderWrapAll.children('.extbSliderContainer').filter(':visible');
                 var $previous_children = $current_children.prev();
                 var $next_children = $current_children.next();
 
@@ -66,19 +83,19 @@
 
                     e.preventDefault();
 
-                    if( $previous_children.hasClass('extbSliderItem') ){
+                    if( $previous_children.hasClass('extbSliderContainer') ){
 
-                        $extbSliderWrapAll.children(config.children).hide();
+                        $extbSliderWrapAll.children('.extbSliderContainer').hide();
                         $previous_children.fadeIn('slow');
 
 
 
                     }else{
-                        $extbSliderWrapAll.children(config.children).hide();
-                        $extbSliderWrapAll.children(config.children).last().fadeIn('slow');
+                        $extbSliderWrapAll.children('.extbSliderContainer').hide();
+                        $extbSliderWrapAll.children('.extbSliderContainer').last().fadeIn('slow');
 
                     }
-                    $current_children = $extbSliderWrapAll.children(config.children).filter(':visible');
+                    $current_children = $extbSliderWrapAll.children('.extbSliderContainer').filter(':visible');
                     $previous_children = $current_children.prev();
                     $next_children = $current_children.next();
 
@@ -87,17 +104,17 @@
                 $father_element.find('.extSliderBtNext a').bind('click',function(e){
 
                     e.preventDefault();
-                    if( $next_children.hasClass('extbSliderItem') ){
+                    if( $next_children.hasClass('extbSliderContainer') ){
 
-                        $extbSliderWrapAll.children(config.children).hide();
+                        $extbSliderWrapAll.children('.extbSliderContainer').hide();
                         $next_children.fadeIn('slow');
 
                     }else{
-                        $extbSliderWrapAll.children(config.children).hide();
-                        $extbSliderWrapAll.children(config.children).first().fadeIn('slow');
+                        $extbSliderWrapAll.children('.extbSliderContainer').hide();
+                        $extbSliderWrapAll.children('.extbSliderContainer').first().fadeIn('slow');
                     }
 
-                    $current_children = $extbSliderWrapAll.children(config.children).filter(':visible');
+                    $current_children = $extbSliderWrapAll.children('.extbSliderContainer').filter(':visible');
                     $previous_children = $current_children.prev();
                     $next_children = $current_children.next();
 
