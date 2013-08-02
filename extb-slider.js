@@ -24,14 +24,13 @@
     $.fn.extbSlider = function(settings) {
 
         var $father_element = this;
-        var numberOfSlides = $father_element.children(config.children).length;
-
         var config = $.extend({
             width : 500, // pixes
             children : $father_element.children(),
             max_view : 4
 
         }, settings);
+        var numberOfSlides = $father_element.children(config.children).length;
 
 
         if(config.children !== undefined){
@@ -55,15 +54,15 @@
 
                 $extbSliderWrapAll.css('width', config.width * config.max_view);
 
-                $extbSliderWrapAll.before('<div class="extbSliderBtBack"><a class="extbSliderLnkBack" href="javascript:void(0);">Back</a></div>');
-                $extbSliderWrapAll.after('<div class="extSliderbBtNext"><a class="extbSliderLnkNext" href="javascript:void(0);">Next</a></div>');
+                $extbSliderWrapAll.before('<div class="extbSliderBtPrev"><a class="extbSliderLnkPrev" href="javascript:void(0);">Prev</a></div>');
+                $extbSliderWrapAll.after('<div class="extSliderBtNext"><a class="extbSliderLnkNext" href="javascript:void(0);">Next</a></div>');
 
                 var $current_children = $extbSliderWrapAll.children(config.children).filter(':visible');
                 var $previous_children = $current_children.prev();
                 var $next_children = $current_children.next();
 
 
-                $father_element.find('.extbSliderBtBack a').bind('click',function(e){
+                $father_element.find('.extbSliderBtPrev a').bind('click',function(e){
 
                     e.preventDefault();
 
@@ -85,7 +84,7 @@
 
                 });
 
-                $father_element.find('.extSliderbBtNext a').bind('click',function(e){
+                $father_element.find('.extSliderBtNext a').bind('click',function(e){
 
                     e.preventDefault();
                     if( $next_children.hasClass('extbSliderItem') ){
