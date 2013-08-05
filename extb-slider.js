@@ -72,7 +72,7 @@
                 $extbSliderWrapAll.children('.extbSliderContainer').first().show();
 
                 $extbSliderWrapAll.before('<div class="extbSliderBtPrev"><a class="extbSliderLnkPrev" href="javascript:void(0);">Prev</a></div>');
-                $extbSliderWrapAll.after('<div class="extSliderBtNext"><a class="extbSliderLnkNext" href="javascript:void(0);">Next</a></div>');
+                $extbSliderWrapAll.after('<div class="extbSliderBtNext"><a class="extbSliderLnkNext" href="javascript:void(0);">Next</a></div>');
 
                 var $current_children = $extbSliderWrapAll.children('.extbSliderContainer').filter(':visible');
                 var $previous_children = $current_children.prev();
@@ -101,7 +101,7 @@
 
                 });
 
-                $father_element.find('.extSliderBtNext a').bind('click',function(e){
+                $father_element.find('.extbSliderBtNext a').bind('click',function(e){
 
                     e.preventDefault();
                     if( $next_children.hasClass('extbSliderContainer') ){
