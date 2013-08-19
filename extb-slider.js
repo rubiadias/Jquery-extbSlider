@@ -131,6 +131,10 @@
 
                 });
 
+                if(config.auto_play){
+                    autoPlay();
+                }
+
             }
 
 
