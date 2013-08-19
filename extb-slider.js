@@ -42,9 +42,9 @@
         var autoPlay = function(){
 
             setTimeout(function(){
-                if (autoPlayStop === false){
+                // if (autoPlayStop === false){
                     $('.extbSliderBtNext a').click();
-                }
+                // }
             },5000);
 
         };
