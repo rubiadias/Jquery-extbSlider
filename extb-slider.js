@@ -29,7 +29,7 @@
             width : 500, // pixels
             children : $father_element.children(),
             max_view : 4,
-            auto_play: true
+            auto_play: false
 
         }, settings);
 
