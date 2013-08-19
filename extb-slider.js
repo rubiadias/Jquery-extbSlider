@@ -42,9 +42,7 @@
         var autoPlay = function(){
 
             setTimeout(function(){
-                // if (autoPlayStop === false){
-                    $('.extbSliderBtNext a').click();
-                // }
+                $('.extbSliderBtNext a').click();
             },5000);
 
         };
