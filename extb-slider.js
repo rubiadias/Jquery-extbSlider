@@ -131,7 +131,7 @@
 
                 });
 
-                if(config.auto_play){
+                if(config.auto_play === true){
                     autoPlay();
                 }
 
