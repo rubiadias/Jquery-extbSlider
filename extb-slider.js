@@ -28,7 +28,8 @@
         var config = $.extend({
             width : 500, // pixels
             children : $father_element.children(),
-            max_view : 4
+            max_view : 4,
+            auto_play: true
 
         }, settings);
 
