@@ -39,6 +39,16 @@
         $father_element.children(config.children).wrapAll('<div class="extbSliderWrapAll" />');
         var $extbSliderWrapAll = $father_element.children('.extbSliderWrapAll');
 
+        var autoPlay = function(){
+
+            setTimeout(function(){
+                if (autoPlayStop === false){
+                    $('.extbSliderBtNext a').click();
+                }
+            },5000);
+
+        };
+
         if(config.children !== undefined){
 
             if ($extbSliderWrapAll.children(config.children).length > 0){
